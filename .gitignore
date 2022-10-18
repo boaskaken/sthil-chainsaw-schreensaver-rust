@@ -1,0 +1,8 @@
+/target
+.vscode/launch.json
+.vscode/settings.json
+Cargo.lock
+debug/
+target/
+**/*.rs.bk
+*.pdb
