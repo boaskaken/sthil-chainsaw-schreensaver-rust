@@ -68,7 +68,7 @@ impl Application for ErrorWindow {
     }
 
     fn background_color(&self) -> iced::Color {
-        iced::Color::WHITE
+        iced::Color::from_rgb(0.8, 0.83, 0.87)
     }
 
     fn scale_factor(&self) -> f64 {
