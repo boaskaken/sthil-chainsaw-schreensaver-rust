@@ -7,3 +7,5 @@ edition = "2021"
 
 [dependencies] 
 delay_timer = "*"
+thiserror = "1.0.37"
+minifb = "0.23"
