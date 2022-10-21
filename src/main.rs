@@ -1,6 +1,4 @@
 use std::{ env, io::{ stdin } };
-extern crate minifb;
-use minifb::{ Key, Window, WindowOptions };
 
 mod saw;
 mod settings;
@@ -55,6 +53,4 @@ fn get_argument(args: &Vec<String>) -> Result<&str, ProjectError> {
     }
 }
 
-pub fn show_invalid(error: &ProjectError) {
-   
-}
+pub fn show_invalid(error: &ProjectError) {}

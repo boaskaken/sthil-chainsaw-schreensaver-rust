@@ -6,6 +6,5 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies] 
-delay_timer = "*"
 thiserror = "1.0.37"
-minifb = "0.23"
+iui = "0.3"
