@@ -1,43 +1,32 @@
-use std::{ env, io::{ stdin } };
+use std::env;
 
 mod saw;
 mod settings;
 mod project_error;
+mod error_window;
 
-use crate::settings::*;
 use crate::saw::*;
+use crate::settings::*;
 use crate::project_error::ProjectError;
+use crate::error_window::*;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    let argument = match get_argument(&args) {
-        Ok(argument) => argument,
-        Err(error) =>
-            match &error {
-                _no_args_error => {
-                    show_invalid(&error);
-                    panic!("{}", error.to_string())
-                }
-                _wrong_args_error => {
-                    show_invalid(&error);
-                    panic!("{}", error.to_string())
-                }
+    match get_argument(&args) {
+        Ok(argument) =>
+            match argument {
+                "/c" => show_settings(),
+                "/p" => show_preview(),
+                "/s" => show_schreensaver(),
+                "/d" => show_debug(),
+                _ => show_invalid(ProjectError::NotAValidCommand),
             }
-    };
-    println!("argument: {:?}", argument);
-    match argument {
-        "/c" => show_settings(),
-        "/p" => show_preview(),
-        "/s" => show_schreensaver(),
-        "/d" => show_debug(),
-        _ => show_invalid(&ProjectError::NotAValidCommand),
+        Err(error) => show_invalid(error),
     }
-    let mut buffer = String::new();
-    stdin().read_line(&mut buffer).expect("Didn't Receive Input");
 }
 
 fn get_argument(args: &Vec<String>) -> Result<&str, ProjectError> {
-    if args.len() < 2 {
+    if args.len() <= 1 {
         return Err(ProjectError::NoArgsError);
     } else {
         let input = args[1].as_str();
@@ -53,4 +42,6 @@ fn get_argument(args: &Vec<String>) -> Result<&str, ProjectError> {
     }
 }
 
-pub fn show_invalid(error: &ProjectError) {}
+fn show_invalid(error: ProjectError) {
+    ErrorWindow::start(error);
+}
