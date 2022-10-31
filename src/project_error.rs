@@ -17,3 +17,11 @@ impl Default for ProjectError {
         ProjectError::DefaultError
     }
 }
+
+#[derive(Error, Debug, Clone)]
+pub enum SettingsError {
+    #[error("Error writing to enviroment.")]
+    WriteToEnviromentError,
+    #[error("Error reading from enviroment.")]
+    ReadingFromEnviromentError,
+}

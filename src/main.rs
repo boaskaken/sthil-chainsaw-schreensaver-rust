@@ -1,12 +1,13 @@
 use std::env;
 
 mod saw;
-mod settings;
+mod settings_window;
 mod project_error;
 mod error_window;
+mod screen_saver_settings;
 
 use crate::saw::*;
-use crate::settings::*;
+use crate::settings_window::*;
 use crate::project_error::ProjectError;
 use crate::error_window::*;
 
