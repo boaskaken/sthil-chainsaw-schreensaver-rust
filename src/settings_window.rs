@@ -1,4 +1,15 @@
-use iced::{ Application, executor, Command, Settings };
+use iced::{
+    Application,
+    executor,
+    Command,
+    Settings,
+    Button,
+    button,
+    Element,
+    Column,
+    Alignment,
+    Text,
+};
 
 use crate::screen_saver_settings::ScreenSaverSettings;
 
@@ -8,9 +19,12 @@ pub enum Message {
     Default,
     Close,
 }
+
 #[derive(Default)]
 pub struct SettignsWindow {
     schreen_saver_setting: ScreenSaverSettings,
+
+    close_button: button::State,
 }
 
 impl SettignsWindow {
@@ -31,7 +45,10 @@ impl Application for SettignsWindow {
     type Flags = ScreenSaverSettings;
 
     fn new(flags: Self::Flags) -> (Self, iced::Command<Self::Message>) {
-        let output = SettignsWindow { schreen_saver_setting: flags };
+        let output = SettignsWindow {
+            schreen_saver_setting: flags,
+            close_button: button::State::new(),
+        };
         (output, Command::none())
     }
 
@@ -43,7 +60,7 @@ impl Application for SettignsWindow {
         match message {
             Message::Update => {
                 match self.schreen_saver_setting.write_to_enviroment() {
-                    Ok(ScreenSaverSettings) => todo!(),
+                    Ok(screen_saver_settings) => todo!(),
                     Err(_) => todo!(),
                 }
             }
@@ -52,8 +69,12 @@ impl Application for SettignsWindow {
         }
     }
 
-    fn view(&mut self) -> iced::Element<'_, Self::Message> {
-        todo!()
+    fn view(&mut self) -> Element<'_, Self::Message> {
+        Column::new()
+            .padding(20)
+            .align_items(Alignment::Center)
+            .push(Button::new(&mut self.close_button, Text::new("Ok")).on_press(Message::Update))
+            .into()
     }
 
     fn background_color(&self) -> iced::Color {
