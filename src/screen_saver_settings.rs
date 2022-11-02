@@ -68,7 +68,7 @@ impl ScreenSaverSettings {
         os_string
         //rgb(243,122,31):rgb(0,0,0):true:STIHL
     }
-    
+
     pub fn get_from_enviroment() -> Result<Self, SettingsError> {
         let from_enviroment = env::var("screen_saver_settings");
         let enviroment_string = match from_enviroment {
@@ -142,7 +142,6 @@ impl Default for ScreenSaverSettings {
             transparent_mode: true,
             text: String::from("STIHL"),
         };
-        output.create_os_string();
         output
     }
 }

@@ -7,5 +7,5 @@ edition = "2021"
 
 [dependencies] 
 thiserror = "1.0.37"
-iced = "0.4"
+iced = { version = "0.4", features = ["svg"] }
 rgb = "0.8"
