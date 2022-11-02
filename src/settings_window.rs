@@ -45,8 +45,12 @@ impl Application for SettignsWindow {
     type Flags = ScreenSaverSettings;
 
     fn new(flags: Self::Flags) -> (Self, iced::Command<Self::Message>) {
+        let settings = match ScreenSaverSettings::get_from_enviroment() {
+            Ok(settings) => settings,
+            Err(_) => flags,
+        };
         let output = SettignsWindow {
-            schreen_saver_setting: flags,
+            schreen_saver_setting: settings,
             close_button: button::State::new(),
         };
         (output, Command::none())

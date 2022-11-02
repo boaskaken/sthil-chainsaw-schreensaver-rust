@@ -66,9 +66,9 @@ impl ScreenSaverSettings {
         os_string.push(":");
         os_string.push(self.text.as_str());
         os_string
-        //tc,rgb(243,122,31)bc,rgb(0,0,0)tr,truetx,STIHL
         //rgb(243,122,31):rgb(0,0,0):true:STIHL
     }
+    
     pub fn get_from_enviroment() -> Result<Self, SettingsError> {
         let from_enviroment = env::var("screen_saver_settings");
         let enviroment_string = match from_enviroment {
