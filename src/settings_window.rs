@@ -10,7 +10,8 @@ use iced::{
     window,
     Length,
     Svg,
-    Container, alignment,
+    Container,
+    alignment,
 };
 
 use crate::screen_saver_settings::ScreenSaverSettings;
@@ -63,7 +64,7 @@ impl Application for SettignsWindow {
     fn new(flags: Self::Flags) -> (Self, iced::Command<Self::Message>) {
         let settings = match ScreenSaverSettings::get_from_enviroment() {
             Ok(settings) => settings,
-            Err(_) => flags,
+            Err(_) => ScreenSaverSettings::default(),
         };
         let output = SettignsWindow {
             schreen_saver_setting: settings,
@@ -99,7 +100,7 @@ impl Application for SettignsWindow {
             .height(Length::Units(250));
         let sthil_logo = Svg::from_path("resources/settings/sthillogo.svg")
             .width(Length::Units(468))
-            .height(Length::Units(51 ));
+            .height(Length::Units(51));
         // let wood_worker = Image::new("resources/settings/woodworker.svg")
         //     .width(Length::Units(210))
         //     .height(Length::Units(413));
