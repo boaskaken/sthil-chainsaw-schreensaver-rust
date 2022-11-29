@@ -9,3 +9,4 @@ edition = "2021"
 thiserror = "1.0.37"
 iced = { version = "0.4", features = ["svg"] }
 rgb = "0.8"
+sys-locale = "0.2.3"
